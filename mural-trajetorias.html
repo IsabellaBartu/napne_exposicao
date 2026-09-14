@@ -203,35 +203,8 @@
     }
 
     .mural-sources a,
-    .mural-modal a {
-      color: var(--mural-wine-dark);
-      font-weight: 700;
-      text-underline-offset: 3px;
-    }
 
-    .mural-modal {
-      position: fixed;
-      inset: 0;
-      z-index: 99999;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 22px;
-      background: rgba(25, 18, 16, .72);
-    }
 
-    .mural-modal.is-open { display: flex; }
-
-    .mural-dialog {
-      position: relative;
-      width: min(850px, 100%);
-      max-height: min(88vh, 900px);
-      overflow: auto;
-      padding: clamp(26px, 5vw, 46px);
-      background: var(--mural-paper);
-      color: var(--mural-ink);
-      box-shadow: 0 30px 80px rgba(0,0,0,.28);
-    }
 
     .mural-close {
       position: sticky;
@@ -257,28 +230,8 @@
       outline-offset: 2px;
     }
 
-    .mural-modal-tag {
-      margin: 0 0 7px;
-      color: var(--mural-wine);
-      font-size: .75rem;
-      font-weight: 800;
-      letter-spacing: .13em;
-      text-transform: uppercase;
-    }
 
-    .mural-modal h2 {
-      margin: 0 0 22px;
-      color: var(--mural-wine-dark);
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(2rem, 5vw, 3.3rem);
-      line-height: 1.03;
-    }
 
-    .mural-modal p {
-      margin: 0 0 17px;
-      color: #4f4540;
-      font-size: 1rem;
-    }
 
     .mural-credit {
       margin-top: 28px !important;
@@ -340,6 +293,14 @@
 
       <hr class="mural-rule">
 
+      <section class="mural-detail" id="mural-detail" aria-live="polite">
+        <a class="mural-back" href="mural-trajetorias.html">← Voltar ao mural</a>
+        <p class="mural-detail-tag" id="mural-detail-tag"></p>
+        <h2 id="mural-detail-title"></h2>
+        <div class="mural-detail-body" id="mural-detail-body"></div>
+        <p class="mural-detail-note">Esta página apresenta a trajetória selecionada separadamente para facilitar a leitura e a acessibilidade.</p>
+      </section>
+
       <div class="mural-grid">
         <!-- 01 -->
         <article class="mural-card">
@@ -353,7 +314,7 @@
             <p class="mural-tag">Natação · Classe S2</p>
             <h2 class="mural-name">Gabrielzinho</h2>
             <p class="mural-summary">Gabriel Geraldo dos Santos Araújo construiu uma das trajetórias mais marcantes da natação paralímpica brasileira.</p>
-            <button class="mural-more" type="button" data-mural="gabriel">Ler trajetória completa</button>
+            <a class="mural-more" href="mural-trajetorias.html?perfil=gabriel" target="_blank" rel="noopener">Ler trajetória completa</a>
           </div>
         </article>
 
@@ -369,7 +330,7 @@
             <p class="mural-tag">Atletismo · Lançamento de disco</p>
             <h2 class="mural-name">Julyana Cristina da Silva</h2>
             <p class="mural-summary">Da natação ao atletismo, Julyana encontrou nas provas de campo um caminho próprio dentro do esporte paralímpico.</p>
-            <button class="mural-more" type="button" data-mural="julyana">Ler trajetória completa</button>
+            <a class="mural-more" href="mural-trajetorias.html?perfil=julyana" target="_blank" rel="noopener">Ler trajetória completa</a>
           </div>
         </article>
 
@@ -385,7 +346,7 @@
             <p class="mural-tag">Atletismo · Velocidade · Classe T47</p>
             <h2 class="mural-name">Petrúcio Ferreira</h2>
             <p class="mural-summary">Velocista paraibano que transformou uma entrada recente no atletismo em uma carreira marcada por recordes e títulos.</p>
-            <button class="mural-more" type="button" data-mural="petrucio">Ler trajetória completa</button>
+            <a class="mural-more" href="mural-trajetorias.html?perfil=petrucio" target="_blank" rel="noopener">Ler trajetória completa</a>
           </div>
         </article>
 
@@ -401,7 +362,7 @@
             <p class="mural-tag">Atletismo · Corrida em cadeira de rodas · Classe T53</p>
             <h2 class="mural-name">Ariosvaldo Fernandes — Parré</h2>
             <p class="mural-summary">Uma trajetória que passou pelo basquete em cadeira de rodas antes de encontrar no atletismo uma carreira internacional.</p>
-            <button class="mural-more" type="button" data-mural="parre">Ler trajetória completa</button>
+            <a class="mural-more" href="mural-trajetorias.html?perfil=parre" target="_blank" rel="noopener">Ler trajetória completa</a>
           </div>
         </article>
 
@@ -417,7 +378,7 @@
             <p class="mural-tag">Vôlei sentado</p>
             <h2 class="mural-name">Luiza Fiorese</h2>
             <p class="mural-summary">A trajetória de Luiza passou da formação em jornalismo ao alto rendimento e à conquista de uma medalha paralímpica.</p>
-            <button class="mural-more" type="button" data-mural="luiza">Ler trajetória completa</button>
+            <a class="mural-more" href="mural-trajetorias.html?perfil=luiza" target="_blank" rel="noopener">Ler trajetória completa</a>
             <p class="mural-note">Imagem ilustrativa da modalidade; a fotografia não é apresentada como retrato individual de Luiza.</p>
           </div>
         </article>
@@ -434,7 +395,7 @@
             <p class="mural-tag">Taekwondo · Classe K44</p>
             <h2 class="mural-name">Nathan Torquato</h2>
             <p class="mural-summary">Nathan entrou no taekwondo ainda criança e se tornou o primeiro brasileiro campeão paralímpico da modalidade.</p>
-            <button class="mural-more" type="button" data-mural="nathan">Ler trajetória completa</button>
+            <a class="mural-more" href="mural-trajetorias.html?perfil=nathan" target="_blank" rel="noopener">Ler trajetória completa</a>
           </div>
         </article>
 
@@ -450,7 +411,7 @@
             <p class="mural-tag">Judô · Classe J2</p>
             <h2 class="mural-name">Alana Maldonado</h2>
             <p class="mural-summary">Alana descobriu a doença de Stargardt na adolescência e levou ao judô paralímpico uma prática que já fazia parte de sua vida desde a infância.</p>
-            <button class="mural-more" type="button" data-mural="alana">Ler trajetória completa</button>
+            <a class="mural-more" href="mural-trajetorias.html?perfil=alana" target="_blank" rel="noopener">Ler trajetória completa</a>
           </div>
         </article>
 
@@ -466,7 +427,7 @@
             <p class="mural-tag">Atletismo · Deficiência visual · Corrida com guia</p>
             <h2 class="mural-name">Henry Wanyoike</h2>
             <p class="mural-summary">A trajetória do atleta queniano evidencia a dimensão coletiva da corrida com guia e sua atuação para além das pistas.</p>
-            <button class="mural-more" type="button" data-mural="henry">Ler trajetória completa</button>
+            <a class="mural-more" href="mural-trajetorias.html?perfil=henry" target="_blank" rel="noopener">Ler trajetória completa</a>
           </div>
         </article>
       </div>
@@ -485,15 +446,6 @@
       </div>
     </div>
   </section>
-
-  <div class="mural-modal" id="mural-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="mural-modal-title">
-    <div class="mural-dialog" role="document">
-      <button class="mural-close" type="button" id="mural-close" aria-label="Fechar trajetória">×</button>
-      <p class="mural-modal-tag" id="mural-modal-tag"></p>
-      <h2 id="mural-modal-title"></h2>
-      <div id="mural-modal-body"></div>
-    </div>
-  </div>
 
   <script>
     /* JS isolado: usa apenas IDs/data attributes próprios do mural. */
@@ -589,46 +541,25 @@
         }
       };
 
-      const modal = document.getElementById('mural-modal');
-      const close = document.getElementById('mural-close');
-      const title = document.getElementById('mural-modal-title');
-      const tag = document.getElementById('mural-modal-tag');
-      const body = document.getElementById('mural-modal-body');
-      let lastFocused = null;
+      const params = new URLSearchParams(window.location.search);
+      const profile = params.get('perfil');
+      const detail = document.getElementById('mural-detail');
+      const grid = document.querySelector('.mural-grid');
+      const sources = document.querySelector('.mural-sources');
+      const rule = document.querySelector('.mural-rule');
 
-      function openModal(key) {
-        const item = data[key];
-        if (!item) return;
-        lastFocused = document.activeElement;
-        tag.textContent = item.tag;
-        title.textContent = item.title;
-        body.innerHTML = item.body;
-        modal.classList.add('is-open');
-        modal.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden';
-        close.focus();
+      if (profile && data[profile]) {
+        const item = data[profile];
+        document.getElementById('mural-detail-tag').textContent = item.tag;
+        document.getElementById('mural-detail-title').textContent = item.title;
+        document.getElementById('mural-detail-body').innerHTML = item.body;
+
+        detail.classList.add('is-visible');
+        grid.style.display = 'none';
+        sources.style.display = 'none';
+        rule.style.display = 'none';
+        document.title = item.title + ' — Além do Padrão';
       }
-
-      function closeModal() {
-        modal.classList.remove('is-open');
-        modal.setAttribute('aria-hidden', 'true');
-        document.body.style.overflow = '';
-        if (lastFocused) lastFocused.focus();
-      }
-
-      document.querySelectorAll('[data-mural]').forEach(button => {
-        button.addEventListener('click', () => openModal(button.dataset.mural));
-      });
-
-      close.addEventListener('click', closeModal);
-
-      modal.addEventListener('click', event => {
-        if (event.target === modal) closeModal();
-      });
-
-      document.addEventListener('keydown', event => {
-        if (event.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
-      });
     })();
   </script>
 </body>
