@@ -1,6 +1,6 @@
-# Além do Padrão — Desafiando a Hegemonia nas Práticas Corporais
+# Além do Padrão - Desafiando a Hegemonia nas Práticas Corporais
 
-Site oficial da exposição **“Além do Padrão: Desafiando a Hegemonia nas Práticas Corporais”**, vinculada ao projeto de extensão **“Construindo um Observatório de Práticas Corporais: interpretações e sínteses a partir da cultura corporal comunitária”**, do IFSP — Campus São Paulo.
+Site oficial da exposição **“Além do Padrão: Desafiando a Hegemonia nas Práticas Corporais”**, vinculada ao projeto de extensão **“Construindo um Observatório de Práticas Corporais: interpretações e sínteses a partir da cultura corporal comunitária”**, do IFSP - Campus São Paulo.
 
 ## 🌐 Site
 
