@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Mural de trajetórias com histórias de atletas e pessoas que ampliam as possibilidades de participação nas práticas corporais.">
+  <title>Mural de Trajetórias — Além do Padrão</title>
+
+  <style>
+    /* =========================================================
+       MURAL DE TRAJETÓRIAS
+       CSS totalmente isolado pelo prefixo .mural-
+       para não interferir no restante do site.
+       ========================================================= */
+    .mural-page,
+    .mural-page * { box-sizing: border-box; }
+
+    .mural-page {
+      --mural-bg: #f7f2eb;
+      --mural-paper: #fffdf9;
+      --mural-ink: #241f1d;
+      --mural-muted: #6f625c;
+      --mural-wine: #762d35;
+      --mural-wine-dark: #541f26;
+      --mural-line: #ddd1c8;
+      --mural-shadow: 0 18px 45px rgba(46, 30, 25, .10);
+      width: 100%;
+      padding: clamp(52px, 7vw, 105px) clamp(18px, 5vw, 70px) 80px;
+      background: var(--mural-bg);
+      color: var(--mural-ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.7;
+      isolation: isolate;
+    }
+
+    .mural-wrap {
+      width: min(1180px, 100%);
+      margin: 0 auto;
+    }
+
+    .mural-kicker {
+      margin: 0 0 13px;
+      color: var(--mural-wine);
+      font-size: .76rem;
+      font-weight: 800;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    .mural-title {
+      max-width: 900px;
+      margin: 0;
+      color: var(--mural-wine-dark);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2.35rem, 6vw, 5rem);
+      font-weight: 500;
+      line-height: .98;
+      letter-spacing: -.035em;
+    }
+
+    .mural-intro {
+      max-width: 850px;
+      margin: 24px 0 0;
+      color: var(--mural-muted);
+      font-size: clamp(1rem, 1.5vw, 1.16rem);
+    }
+
+    .mural-rule {
+      height: 1px;
+      margin: clamp(42px, 6vw, 70px) 0;
+      background: var(--mural-line);
+      border: 0;
+    }
+
+    .mural-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 26px;
+    }
+
+    .mural-card {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      min-width: 0;
+      background: var(--mural-paper);
+      border: 1px solid var(--mural-line);
+      box-shadow: var(--mural-shadow);
+    }
+
+    .mural-photo-wrap {
+      position: relative;
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      background: #e9e1d9;
+    }
+
+    .mural-photo {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .45s ease;
+    }
+
+    .mural-card:hover .mural-photo,
+    .mural-card:focus-within .mural-photo {
+      transform: scale(1.025);
+    }
+
+    .mural-number {
+      position: absolute;
+      left: 16px;
+      top: 16px;
+      display: grid;
+      width: 38px;
+      height: 38px;
+      place-items: center;
+      color: #fff;
+      background: var(--mural-wine);
+      border-radius: 50%;
+      font-size: .78rem;
+      font-weight: 800;
+    }
+
+    .mural-content {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      padding: 26px 26px 25px;
+    }
+
+    .mural-tag {
+      margin: 0 0 8px;
+      color: var(--mural-wine);
+      font-size: .75rem;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .mural-name {
+      margin: 0;
+      color: var(--mural-ink);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.65rem, 3vw, 2.2rem);
+      font-weight: 600;
+      line-height: 1.08;
+    }
+
+    .mural-summary {
+      margin: 15px 0 22px;
+      color: var(--mural-muted);
+      font-size: .98rem;
+    }
+
+    .mural-more {
+      width: fit-content;
+      margin-top: auto;
+      padding: 11px 16px;
+      color: var(--mural-wine-dark);
+      background: transparent;
+      border: 1px solid var(--mural-wine);
+      border-radius: 999px;
+      cursor: pointer;
+      font: inherit;
+      font-size: .9rem;
+      font-weight: 750;
+      transition: background .2s ease, color .2s ease;
+    }
+
+    .mural-more:hover,
+    .mural-more:focus-visible {
+      color: #fff;
+      background: var(--mural-wine);
+      outline: none;
+    }
+
+    .mural-note {
+      margin: 24px 0 0;
+      color: #796c65;
+      font-size: .82rem;
+    }
+
+    .mural-sources {
+      margin-top: 58px;
+      padding-top: 26px;
+      border-top: 1px solid var(--mural-line);
+    }
+
+    .mural-sources h2 {
+      margin: 0 0 14px;
+      color: var(--mural-wine-dark);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.55rem;
+      font-weight: 600;
+    }
+
+    .mural-sources p {
+      margin: 8px 0;
+      color: var(--mural-muted);
+      font-size: .9rem;
+    }
+
+    .mural-sources a,
+    .mural-modal a {
+      color: var(--mural-wine-dark);
+      font-weight: 700;
+      text-underline-offset: 3px;
+    }
+
+    .mural-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 22px;
+      background: rgba(25, 18, 16, .72);
+    }
+
+    .mural-modal.is-open { display: flex; }
+
+    .mural-dialog {
+      position: relative;
+      width: min(850px, 100%);
+      max-height: min(88vh, 900px);
+      overflow: auto;
+      padding: clamp(26px, 5vw, 46px);
+      background: var(--mural-paper);
+      color: var(--mural-ink);
+      box-shadow: 0 30px 80px rgba(0,0,0,.28);
+    }
+
+    .mural-close {
+      position: sticky;
+      float: right;
+      top: 0;
+      width: 42px;
+      height: 42px;
+      margin: -8px -8px 15px 15px;
+      color: var(--mural-wine-dark);
+      background: transparent;
+      border: 1px solid var(--mural-line);
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.35rem;
+      line-height: 1;
+    }
+
+    .mural-close:hover,
+    .mural-close:focus-visible {
+      color: #fff;
+      background: var(--mural-wine);
+      outline: 3px solid rgba(118,45,53,.22);
+      outline-offset: 2px;
+    }
+
+    .mural-modal-tag {
+      margin: 0 0 7px;
+      color: var(--mural-wine);
+      font-size: .75rem;
+      font-weight: 800;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+
+    .mural-modal h2 {
+      margin: 0 0 22px;
+      color: var(--mural-wine-dark);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2rem, 5vw, 3.3rem);
+      line-height: 1.03;
+    }
+
+    .mural-modal p {
+      margin: 0 0 17px;
+      color: #4f4540;
+      font-size: 1rem;
+    }
+
+    .mural-credit {
+      margin-top: 28px !important;
+      padding-top: 18px;
+      border-top: 1px solid var(--mural-line);
+      font-size: .84rem !important;
+      color: #756760 !important;
+    }
+
+    .mural-credit strong { color: var(--mural-ink); }
+
+    .mural-sr {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    @media (max-width: 760px) {
+      .mural-page { padding-inline: 16px; }
+      .mural-grid { grid-template-columns: 1fr; }
+      .mural-content { padding: 22px 20px; }
+      .mural-photo-wrap { aspect-ratio: 4 / 3; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .mural-photo,
+      .mural-more { transition: none; }
+    }
+  </style>
+</head>
+
+<body style="margin:0; background:#f7f2eb;">
+  <section class="mural-page" aria-labelledby="mural-title">
+    <div class="mural-wrap">
+      <p class="mural-kicker">Além do Padrão · Mural de trajetórias</p>
+      <h1 class="mural-title" id="mural-title">Corpos, trajetórias e presenças</h1>
+      <p class="mural-intro">
+        Este mural reúne histórias de pessoas que fizeram do esporte um espaço de presença,
+        criação, pertencimento e disputa por reconhecimento. As trajetórias apresentadas aqui
+        não são colocadas como exemplos de “superação” de uma condição corporal. Elas são,
+        antes, histórias de formação, escolha, treinamento, conquista, trabalho e ocupação de
+        espaços que nem sempre foram pensados para todos os corpos.
+      </p>
+      <p class="mural-intro">
+        Ao aproximar diferentes modalidades — da natação ao atletismo, do taekwondo ao judô,
+        do vôlei sentado à corrida com guia — a exposição desloca o olhar da ideia de um corpo
+        considerado “ideal” para a multiplicidade concreta das formas de participar das práticas
+        corporais. Cada trajetória carrega marcas pessoais e sociais, mas também evidencia que
+        acesso, oportunidade, técnica, apoio, treinamento e reconhecimento fazem parte daquilo
+        que torna possível ocupar uma quadra, uma pista, uma piscina, um tatame ou qualquer
+        outro espaço de prática corporal.
+      </p>
+
+      <hr class="mural-rule">
+
+      <div class="mural-grid">
+        <!-- 01 -->
+        <article class="mural-card">
+          <div class="mural-photo-wrap">
+            <img class="mural-photo" loading="lazy"
+              src="https://commons.wikimedia.org/wiki/Special:Redirect/file/PG2024-swimming-Gabriel-dos-Santos-Araujo.jpg"
+              alt="Gabriel Geraldo dos Santos Araújo competindo nos 50 metros costas da classe S2 nos Jogos Paralímpicos de Paris 2024.">
+            <span class="mural-number" aria-hidden="true">01</span>
+          </div>
+          <div class="mural-content">
+            <p class="mural-tag">Natação · Classe S2</p>
+            <h2 class="mural-name">Gabrielzinho</h2>
+            <p class="mural-summary">Gabriel Geraldo dos Santos Araújo construiu uma das trajetórias mais marcantes da natação paralímpica brasileira.</p>
+            <button class="mural-more" type="button" data-mural="gabriel">Ler trajetória completa</button>
+          </div>
+        </article>
+
+        <!-- 02 -->
+        <article class="mural-card">
+          <div class="mural-photo-wrap">
+            <img class="mural-photo" loading="lazy"
+              src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Julyana_Cristina.jpg"
+              alt="Julyana Cristina da Silva, atleta brasileira do atletismo paralímpico.">
+            <span class="mural-number" aria-hidden="true">02</span>
+          </div>
+          <div class="mural-content">
+            <p class="mural-tag">Atletismo · Lançamento de disco</p>
+            <h2 class="mural-name">Julyana Cristina da Silva</h2>
+            <p class="mural-summary">Da natação ao atletismo, Julyana encontrou nas provas de campo um caminho próprio dentro do esporte paralímpico.</p>
+            <button class="mural-more" type="button" data-mural="julyana">Ler trajetória completa</button>
+          </div>
+        </article>
+
+        <!-- 03 -->
+        <article class="mural-card">
+          <div class="mural-photo-wrap">
+            <img class="mural-photo" loading="lazy"
+              src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Petr%C3%BAcio_Ferreira_Rio2016d.jpg"
+              alt="Petrúcio Ferreira durante competição de atletismo nos Jogos Paralímpicos Rio 2016.">
+            <span class="mural-number" aria-hidden="true">03</span>
+          </div>
+          <div class="mural-content">
+            <p class="mural-tag">Atletismo · Velocidade · Classe T47</p>
+            <h2 class="mural-name">Petrúcio Ferreira</h2>
+            <p class="mural-summary">Velocista paraibano que transformou uma entrada recente no atletismo em uma carreira marcada por recordes e títulos.</p>
+            <button class="mural-more" type="button" data-mural="petrucio">Ler trajetória completa</button>
+          </div>
+        </article>
+
+        <!-- 04 -->
+        <article class="mural-card">
+          <div class="mural-photo-wrap">
+            <img class="mural-photo" loading="lazy"
+              src="https://commons.wikimedia.org/wiki/Special:Redirect/file/PG2024-athletics-men-100m-T53-R1-heat2-Ariosvaldo-Fernandes-da-Silva-01.jpg"
+              alt="Ariosvaldo Fernandes da Silva, o Parré, competindo nos 100 metros T53 em Paris 2024.">
+            <span class="mural-number" aria-hidden="true">04</span>
+          </div>
+          <div class="mural-content">
+            <p class="mural-tag">Atletismo · Corrida em cadeira de rodas · Classe T53</p>
+            <h2 class="mural-name">Ariosvaldo Fernandes — Parré</h2>
+            <p class="mural-summary">Uma trajetória que passou pelo basquete em cadeira de rodas antes de encontrar no atletismo uma carreira internacional.</p>
+            <button class="mural-more" type="button" data-mural="parre">Ler trajetória completa</button>
+          </div>
+        </article>
+
+        <!-- 05 -->
+        <article class="mural-card">
+          <div class="mural-photo-wrap">
+            <img class="mural-photo" loading="lazy"
+              src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Brazil_celebrate_winning_sitting_volleyball.jpg"
+              alt="Atletas da seleção brasileira feminina comemoram uma vitória no vôlei sentado nos Jogos Paralímpicos de Londres 2012. Imagem usada para contextualizar a modalidade.">
+            <span class="mural-number" aria-hidden="true">05</span>
+          </div>
+          <div class="mural-content">
+            <p class="mural-tag">Vôlei sentado</p>
+            <h2 class="mural-name">Luiza Fiorese</h2>
+            <p class="mural-summary">A trajetória de Luiza passou da formação em jornalismo ao alto rendimento e à conquista de uma medalha paralímpica.</p>
+            <button class="mural-more" type="button" data-mural="luiza">Ler trajetória completa</button>
+            <p class="mural-note">Imagem ilustrativa da modalidade; a fotografia não é apresentada como retrato individual de Luiza.</p>
+          </div>
+        </article>
+
+        <!-- 06 -->
+        <article class="mural-card">
+          <div class="mural-photo-wrap">
+            <img class="mural-photo" loading="lazy"
+              src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Nathan_Torquato_ap%C3%B3s_vit%C3%B3ria_no_taekwondo_em_T%C3%B3quio_2020.jpg"
+              alt="Nathan Torquato após conquistar o ouro no para-taekwondo nos Jogos Paralímpicos de Tóquio 2020.">
+            <span class="mural-number" aria-hidden="true">06</span>
+          </div>
+          <div class="mural-content">
+            <p class="mural-tag">Taekwondo · Classe K44</p>
+            <h2 class="mural-name">Nathan Torquato</h2>
+            <p class="mural-summary">Nathan entrou no taekwondo ainda criança e se tornou o primeiro brasileiro campeão paralímpico da modalidade.</p>
+            <button class="mural-more" type="button" data-mural="nathan">Ler trajetória completa</button>
+          </div>
+        </article>
+
+        <!-- 07 -->
+        <article class="mural-card">
+          <div class="mural-photo-wrap">
+            <img class="mural-photo" loading="lazy"
+              src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Alana_Martins_Maldonado_Rio2016f.jpg"
+              alt="Alana Martins Maldonado recebendo a medalha de prata no judô dos Jogos Paralímpicos Rio 2016.">
+            <span class="mural-number" aria-hidden="true">07</span>
+          </div>
+          <div class="mural-content">
+            <p class="mural-tag">Judô · Classe J2</p>
+            <h2 class="mural-name">Alana Maldonado</h2>
+            <p class="mural-summary">Alana descobriu a doença de Stargardt na adolescência e levou ao judô paralímpico uma prática que já fazia parte de sua vida desde a infância.</p>
+            <button class="mural-more" type="button" data-mural="alana">Ler trajetória completa</button>
+          </div>
+        </article>
+
+        <!-- 08 -->
+        <article class="mural-card">
+          <div class="mural-photo-wrap">
+            <img class="mural-photo" loading="lazy"
+              src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Henry_Wanyoike_and_Joseph_Kibunja_20070310.jpg"
+              alt="Henry Wanyoike correndo acompanhado por seu guia Joseph Kibunja.">
+            <span class="mural-number" aria-hidden="true">08</span>
+          </div>
+          <div class="mural-content">
+            <p class="mural-tag">Atletismo · Deficiência visual · Corrida com guia</p>
+            <h2 class="mural-name">Henry Wanyoike</h2>
+            <p class="mural-summary">A trajetória do atleta queniano evidencia a dimensão coletiva da corrida com guia e sua atuação para além das pistas.</p>
+            <button class="mural-more" type="button" data-mural="henry">Ler trajetória completa</button>
+          </div>
+        </article>
+      </div>
+
+      <div class="mural-sources">
+        <h2>Fontes e créditos das imagens</h2>
+        <p>As informações biográficas foram conferidas prioritariamente em fontes institucionais do Comitê Paralímpico Brasileiro e do International Paralympic Committee. As imagens foram selecionadas, quando possível, em arquivos do Wikimedia Commons com licença aberta indicada na própria página do arquivo.</p>
+        <p>Gabrielzinho — <a href="https://commons.wikimedia.org/wiki/File:PG2024-swimming-Gabriel-dos-Santos-Araujo.jpg" target="_blank" rel="noopener">Wikimedia Commons</a> · CC BY 4.0 · autor Eponimm.</p>
+        <p>Julyana — <a href="https://commons.wikimedia.org/wiki/File:Julyana_Cristina.jpg" target="_blank" rel="noopener">Wikimedia Commons</a> · arquivo da atleta; conferir a página do arquivo para os termos de reutilização.</p>
+        <p>Petrúcio — <a href="https://commons.wikimedia.org/wiki/File:Petr%C3%BAcio_Ferreira_Rio2016d.jpg" target="_blank" rel="noopener">Wikimedia Commons</a> · CC BY 3.0 Brasil · Fernando Frazão/Agência Brasil.</p>
+        <p>Parré — <a href="https://commons.wikimedia.org/wiki/File:PG2024-athletics-men-100m-T53-R1-heat2-Ariosvaldo-Fernandes-da-Silva-01.jpg" target="_blank" rel="noopener">Wikimedia Commons</a> · CC BY 4.0 · autor Eponimm.</p>
+        <p>Vôlei sentado — <a href="https://commons.wikimedia.org/wiki/File:Brazil_celebrate_winning_sitting_volleyball.jpg" target="_blank" rel="noopener">Wikimedia Commons</a> · CC BY 2.0 · Ben Sutherland.</p>
+        <p>Nathan — <a href="https://commons.wikimedia.org/wiki/File:Nathan_Torquato_ap%C3%B3s_vit%C3%B3ria_no_taekwondo_em_T%C3%B3quio_2020.jpg" target="_blank" rel="noopener">Wikimedia Commons</a> · CC BY 3.0 · Rede do Esporte / Rogério Capela/CPB.</p>
+        <p>Alana — <a href="https://commons.wikimedia.org/wiki/File:Alana_Martins_Maldonado_Rio2016f.jpg" target="_blank" rel="noopener">Wikimedia Commons</a> · CC BY 3.0 Brasil · Tomaz Silva/Agência Brasil.</p>
+        <p>Henry Wanyoike e Joseph Kibunja — <a href="https://commons.wikimedia.org/wiki/File:Henry_Wanyoike_and_Joseph_Kibunja_20070310.jpg" target="_blank" rel="noopener">Wikimedia Commons</a> · CC BY 2.0 · Eryn Vorn.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="mural-modal" id="mural-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="mural-modal-title">
+    <div class="mural-dialog" role="document">
+      <button class="mural-close" type="button" id="mural-close" aria-label="Fechar trajetória">×</button>
+      <p class="mural-modal-tag" id="mural-modal-tag"></p>
+      <h2 id="mural-modal-title"></h2>
+      <div id="mural-modal-body"></div>
+    </div>
+  </div>
+
+  <script>
+    /* JS isolado: usa apenas IDs/data attributes próprios do mural. */
+    (() => {
+      const data = {
+        gabriel: {
+          tag: 'Natação · Classe S2',
+          title: 'Gabriel Geraldo dos Santos Araújo — Gabrielzinho',
+          body: `
+            <p>Gabriel Geraldo dos Santos Araújo, conhecido como Gabrielzinho, nasceu em Santa Luzia, Minas Gerais, em 2002. Ele tem focomelia, uma condição congênita que interfere na formação dos braços e das pernas. Sua entrada na natação aconteceu ainda no ambiente escolar: um professor de Educação Física apresentou a modalidade durante os Jogos Escolares de Minas Gerais.</p>
+            <p>A partir daí, a piscina deixou de ser apenas um espaço de prática e passou a fazer parte de uma trajetória esportiva de altíssimo rendimento. Gabriel competiu na classe S2 e construiu resultados expressivos em diferentes etapas do circuito paralímpico. Nos Jogos Paralímpicos de Tóquio, já havia conquistado três medalhas, incluindo dois ouros; em Paris 2024, voltou ao pódio com três ouros, nos 50 m costas, 100 m costas e 200 m livre.</p>
+            <p>O percurso de Gabriel também ajuda a deslocar uma ideia muito presente quando pessoas com deficiência aparecem em narrativas esportivas: a de que sua presença deveria ser lida apenas como “superação”. Sua carreira envolve técnica, preparação, competição, planejamento e excelência esportiva. O corpo que aparece na piscina não está ali para representar uma exceção abstrata, mas para disputar, criar estratégias e produzir resultados dentro de uma modalidade com regras, classes e diferentes formas de participação.</p>
+            <p>Em 2025, Gabriel ainda ampliou seu conjunto de conquistas ao vencer os 50 m e 100 m costas e os 200 m livre no Mundial de Singapura. Sua trajetória evidencia como oportunidades concretas de acesso ao esporte podem abrir caminhos que ultrapassam aquilo que os padrões corporais hegemônicos costumam imaginar como possível.</p>
+            <p class="mural-credit"><strong>Fontes:</strong> Comitê Paralímpico Brasileiro; Wikimedia Commons. Imagem: Eponimm, CC BY 4.0.</p>
+          `
+        },
+        julyana: {
+          tag: 'Atletismo · Classe F57 · Lançamento de disco',
+          title: 'Julyana Cristina da Silva',
+          body: `
+            <p>Julyana Cristina da Silva nasceu no Rio de Janeiro em 1996 e compete no atletismo paralímpico, na classe F57. Ela é amputada da perna esquerda, na altura do joelho, devido a uma má-formação congênita. Sua trajetória esportiva começou em outra modalidade: em 2008, entrou para a natação paralímpica e permaneceu competindo até meados de 2012.</p>
+            <p>Foi justamente em 2012 que sua trajetória tomou outro rumo. Após um convite de uma treinadora, Julyana migrou para as provas de campo do atletismo. A mudança mostra que uma prática corporal não precisa ser uma escolha definitiva: diferentes modalidades podem oferecer outras relações com o corpo, com a técnica, com o espaço e com a competição.</p>
+            <p>No atletismo, o lançamento de disco tornou-se uma de suas principais provas. Em Tóquio 2020, conquistou a medalha de bronze no lançamento de disco. No Parapan-Americano de Santiago 2023, voltou ao pódio com bronze no disco e no arremesso de peso. Em 2026, o CPB registrou nova conquista importante: Julyana venceu o lançamento de disco F57 no Meeting Paralímpico do Rio de Janeiro, com a marca de 26,86 m.</p>
+            <p>Sua trajetória interessa especialmente a esta exposição porque revela um corpo que não apenas participa de uma modalidade, mas desenvolve técnica, potência e repertório próprio dentro dela. O esporte não aparece como um lugar onde a diferença corporal precisa desaparecer; aparece como espaço em que diferentes corpos podem construir maneiras específicas de realizar uma mesma prática.</p>
+            <p class="mural-credit"><strong>Fontes:</strong> Comitê Paralímpico Brasileiro; Wikimedia Commons. A página do arquivo da imagem deve ser consultada para os termos atuais de reutilização.</p>
+          `
+        },
+        petrucio: {
+          tag: 'Atletismo · Velocidade · Classe T47',
+          title: 'Petrúcio Ferreira dos Santos',
+          body: `
+            <p>Petrúcio Ferreira dos Santos nasceu em São José do Brejo do Cruz, na Paraíba, em 1996. Aos dois anos de idade, sofreu um acidente com uma máquina de moer capim e perdeu parte do braço esquerdo, abaixo do cotovelo. Antes de se tornar um dos principais velocistas paralímpicos do mundo, gostava de jogar futsal e já chamava atenção pela velocidade.</p>
+            <p>Sua entrada no atletismo de alto rendimento aconteceu relativamente tarde. A carreira competitiva começou na década de 2010 e, em pouco tempo, Petrúcio passou a disputar provas internacionais. No Rio 2016, aos 19 anos, venceu os 100 m da classe T47 e quebrou o recorde mundial da prova na final, com 10s57. Também conquistou prata nos 400 m e no revezamento.</p>
+            <p>A partir dali, sua trajetória se consolidou com títulos mundiais, medalhas em Jogos Parapan-Americanos e novos recordes. O IPC registra que ele venceu os 100 m e os 200 m T47 no Mundial de Londres 2017. O guia de imprensa do CPB para Paris 2024 também registra ouro nos 100 m no Mundial de Kobe 2024 e sua presença entre os grandes nomes brasileiros da modalidade.</p>
+            <p>Petrúcio é uma presença importante neste mural porque sua história evidencia o caráter técnico do esporte paralímpico. A pista não exige que todos os corpos sejam iguais; ela estabelece regras, classes, distâncias, tempos e estratégias. Dentro desse sistema, atletas desenvolvem diferentes maneiras de correr e competir — e o resultado é uma prática esportiva marcada justamente pela diversidade corporal.</p>
+            <p class="mural-credit"><strong>Fontes:</strong> International Paralympic Committee; Comitê Paralímpico Brasileiro. Imagem: Fernando Frazão/Agência Brasil, CC BY 3.0 Brasil via Wikimedia Commons.</p>
+          `
+        },
+        parre: {
+          tag: 'Atletismo · Corrida em cadeira de rodas · Classe T53',
+          title: 'Ariosvaldo Fernandes da Silva — Parré',
+          body: `
+            <p>Ariosvaldo Fernandes da Silva, conhecido como Parré, nasceu em Campina Grande, na Paraíba, em 1976. Aos 18 meses de idade, teve poliomielite e ficou com os membros inferiores paralisados. Seu contato com o esporte paralímpico aconteceu aos 17 anos, quando um professor de Educação Física o apresentou ao basquete em cadeira de rodas.</p>
+            <p>Durante alguns anos, o basquete foi sua modalidade. Em 2002, porém, Parré migrou para o atletismo e passou a construir uma carreira internacional nas provas de velocidade em cadeira de rodas. A mudança de modalidade mostra que a relação entre corpo e esporte também é uma trajetória de experimentação: diferentes práticas oferecem diferentes possibilidades de técnica, treinamento e participação.</p>
+            <p>Em Paris 2024, Parré conquistou a medalha de bronze nos 100 m da classe T53, seu primeiro pódio paralímpico. Antes disso, já havia acumulado títulos e medalhas em Jogos Parapan-Americanos e Mundiais. O CPB também destaca que ele conquistou prata nos 100 m no Mundial de Kobe 2024 e diversos pódios em provas de velocidade ao longo da carreira.</p>
+            <p>Sua presença neste mural ajuda a olhar para a cadeira de competição não como um símbolo de impedimento, mas como parte de uma tecnologia esportiva e de uma forma específica de realizar a prova. A cadeira, a pista, o atleta e a técnica formam um conjunto. É nessa combinação que se constrói a performance — e é justamente essa multiplicidade que a exposição pretende tornar visível.</p>
+            <p class="mural-credit"><strong>Fontes:</strong> Comitê Paralímpico Brasileiro; Wikimedia Commons. Imagem: Eponimm, CC BY 4.0.</p>
+          `
+        },
+        luiza: {
+          tag: 'Vôlei sentado',
+          title: 'Luiza Guisso Fiorese',
+          body: `
+            <p>Luiza Guisso Fiorese chegou ao vôlei sentado por um caminho que combina esporte, formação acadêmica e uma mudança profunda de perspectiva sobre sua própria relação com as práticas corporais. Aos 15 anos, foi diagnosticada com câncer no osso da coxa esquerda e passou por uma cirurgia que substituiu o fêmur por uma endoprótese.</p>
+            <p>Antes disso, Luiza já tinha relação com o esporte. Depois da cirurgia, porém, não imaginava imediatamente que continuaria praticando. Chegou a escolher o jornalismo como uma maneira de permanecer próxima do universo esportivo. Foi quando experimentou o vôlei sentado que encontrou outra possibilidade: não apenas acompanhar o esporte, mas voltar a vivenciá-lo como atleta.</p>
+            <p>Luiza estreou nos Jogos Paralímpicos em Tóquio 2020 e conquistou a medalha de bronze com a seleção brasileira feminina. No ano seguinte, também participou da campanha que levou o Brasil ao título mundial de vôlei sentado em 2022. O percurso mostra como uma modalidade pode aparecer em um momento de transformação da vida e se tornar um novo espaço de pertencimento.</p>
+            <p>Para esta exposição, sua história é especialmente significativa porque questiona a ideia de que uma alteração corporal determina o fim da experiência esportiva. O que muda não é apenas o corpo; mudam também as regras, os apoios, a posição em quadra e as formas de jogar. O vôlei sentado cria outro repertório técnico e coletivo, mostrando que adaptar uma prática não significa empobrecê-la — significa produzir outras possibilidades para que ela exista.</p>
+            <p class="mural-credit"><strong>Fonte biográfica:</strong> International Paralympic Committee / World ParaVolley. <strong>Imagem:</strong> fotografia de vôlei sentado disponível no Wikimedia Commons, usada aqui como imagem contextual da modalidade, não como retrato individual de Luiza.</p>
+          `
+        },
+        nathan: {
+          tag: 'Taekwondo · Classe K44',
+          title: 'Nathan Cesar Sodario Torquato',
+          body: `
+            <p>Nathan Cesar Sodario Torquato nasceu em Praia Grande, São Paulo, em 2001, com uma má-formação no braço esquerdo. Sua relação com o taekwondo começou muito cedo. Aos três anos, voltando da escola de bicicleta com a mãe, viu uma academia e insistiu para ser matriculado. A academia que despertou sua curiosidade naquela infância continua sendo o local onde ele treina.</p>
+            <p>Essa continuidade é uma parte importante de sua trajetória. Antes de ser reconhecido pelas medalhas internacionais, Nathan construiu uma relação cotidiana com a prática: repetição, aprendizagem técnica, disciplina e convivência com outras pessoas no espaço de treinamento.</p>
+            <p>Em Tóquio 2020, Nathan entrou para a história ao conquistar o ouro na categoria K44, tornando-se o primeiro brasileiro campeão paralímpico do para-taekwondo. Também conquistou títulos em competições continentais e nacionais, incluindo o ouro no Parapan-Americano de Santiago 2023.</p>
+            <p>Sua história desloca a pergunta “quem pode lutar?” para outra questão: “como uma modalidade pode acolher diferentes corpos sem deixar de ser tecnicamente exigente?”. No taekwondo, distância, equilíbrio, tempo, estratégia e precisão continuam sendo fundamentais. O que muda são as formas pelas quais o atleta organiza seu corpo e sua técnica para realizar a luta.</p>
+            <p class="mural-credit"><strong>Fontes:</strong> Comitê Paralímpico Brasileiro; International Paralympic Committee. Imagem: Rede do Esporte / Rogério Capela/CPB, CC BY 3.0 via Wikimedia Commons.</p>
+          `
+        },
+        alana: {
+          tag: 'Judô · Classe J2',
+          title: 'Alana Martins Maldonado',
+          body: `
+            <p>Alana Martins Maldonado nasceu em Tupã, São Paulo, em 1995. Ela começou a praticar judô aos quatro anos de idade, muito antes de entrar para o esporte paralímpico. Aos 14, descobriu que tinha a doença de Stargardt, uma condição que afeta a visão. Durante alguns anos, a relação com o judô continuou, mas foi somente em 2014, quando entrou na faculdade, que ela passou a praticar a modalidade paralímpica.</p>
+            <p>A mudança não significou abandonar aquilo que já sabia. Pelo contrário: a experiência acumulada no judô encontrou novas exigências e adaptações no contexto paralímpico. No para-judô, atletas com deficiência visual desenvolvem estratégias baseadas no contato, na percepção corporal, no equilíbrio e na leitura tátil da ação do adversário.</p>
+            <p>Alana conquistou prata nos Jogos Paralímpicos do Rio 2016 e, posteriormente, tornou-se campeã paralímpica em Tóquio 2020 e Paris 2024 na categoria até 70 kg. Também conquistou títulos mundiais e chegou à liderança do ranking internacional de sua categoria.</p>
+            <p>Seu percurso ajuda a questionar a associação automática entre deficiência visual e ausência de autonomia corporal. No tatame, o contato é uma fonte de informação e não uma barreira. A prática reorganiza os sentidos utilizados para perceber o espaço, o adversário e o próprio corpo. Assim, o judô revela uma das ideias centrais desta exposição: diferentes corpos não significam ausência de capacidade, mas diferentes formas de construir técnica e presença.</p>
+            <p class="mural-credit"><strong>Fonte:</strong> Comitê Paralímpico Brasileiro. Imagem: Tomaz Silva/Agência Brasil, CC BY 3.0 Brasil via Wikimedia Commons.</p>
+          `
+        },
+        henry: {
+          tag: 'Atletismo · Deficiência visual · Corrida com guia',
+          title: 'Henry Wanyoike e Joseph Kibunja',
+          body: `
+            <p>Henry Wanyoike é um atleta queniano com deficiência visual que construiu uma carreira marcada pela corrida de longa distância e pela parceria com atletas-guia. A imagem escolhida para o mural registra Henry acompanhado de Joseph Kibunja, evidenciando visualmente uma dimensão fundamental de determinadas provas para atletas com deficiência visual: a prática é realizada em parceria.</p>
+            <p>A relação entre corredor e guia não é simplesmente de acompanhamento. Ela envolve ritmo, comunicação, coordenação, confiança e uma sintonia construída durante o treinamento. Em competições, pequenas diferenças de tempo, distância ou direção podem interferir diretamente no desempenho. A presença do guia, portanto, faz parte da própria organização técnica da corrida.</p>
+            <p>Henry tornou-se um dos nomes mais conhecidos do atletismo paralímpico queniano e conquistou medalhas e recordes internacionais. Depois de perder a visão, encontrou na corrida uma possibilidade de reconstruir sua relação com o esporte e ampliou sua atuação para projetos sociais. A Henry Wanyoike Foundation desenvolve iniciativas relacionadas a educação, esporte e apoio a pessoas com deficiência.</p>
+            <p>Para a exposição, sua trajetória amplia a discussão sobre acessibilidade porque mostra que participação também pode ser coletiva. Em vez de pensar a autonomia apenas como fazer tudo sozinho, a experiência da corrida com guia evidencia outras formas de cooperação: dois corpos podem compartilhar uma mesma prova, uma mesma estratégia e um mesmo objetivo sem que isso diminua a identidade ou a capacidade de nenhum deles.</p>
+            <p class="mural-credit"><strong>Fonte da imagem:</strong> Wikimedia Commons. Fotografia de Eryn Vorn, CC BY 2.0; imagem posteriormente recortada por Vantey. A página do arquivo também registra aviso sobre direitos de personalidade.</p>
+          `
+        }
+      };
+
+      const modal = document.getElementById('mural-modal');
+      const close = document.getElementById('mural-close');
+      const title = document.getElementById('mural-modal-title');
+      const tag = document.getElementById('mural-modal-tag');
+      const body = document.getElementById('mural-modal-body');
+      let lastFocused = null;
+
+      function openModal(key) {
+        const item = data[key];
+        if (!item) return;
+        lastFocused = document.activeElement;
+        tag.textContent = item.tag;
+        title.textContent = item.title;
+        body.innerHTML = item.body;
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        close.focus();
+      }
+
+      function closeModal() {
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        if (lastFocused) lastFocused.focus();
+      }
+
+      document.querySelectorAll('[data-mural]').forEach(button => {
+        button.addEventListener('click', () => openModal(button.dataset.mural));
+      });
+
+      close.addEventListener('click', closeModal);
+
+      modal.addEventListener('click', event => {
+        if (event.target === modal) closeModal();
+      });
+
+      document.addEventListener('keydown', event => {
+        if (event.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
+      });
+    })();
+  </script>
+</body>
+</html>
