@@ -186,3 +186,65 @@ input[type="range"] { width: 100%; accent-color: var(--wine); }
 }
 
 .sr-only { position: absolute !important; width: 1px !important; height: 1px !important; padding: 0 !important; margin: -1px !important; overflow: hidden !important; clip: rect(0, 0, 0, 0) !important; white-space: nowrap !important; border: 0 !important; }
+/* =====================================================
+   CORREÇÃO DA PÁGINA INDIVIDUAL
+===================================================== */
+
+.trajetoria.ativa {
+  display: block !important;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 0 80px;
+}
+
+.trajetoria.ativa h2 {
+  margin: 12px 0 38px !important;
+
+  color: #541f26 !important;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif !important;
+
+  font-size: clamp(48px, 7vw, 82px) !important;
+  font-weight: 500 !important;
+  line-height: .95 !important;
+
+  letter-spacing: -.04em !important;
+}
+
+.trajetoria.ativa .texto {
+  max-width: 800px;
+}
+
+.trajetoria.ativa .texto p {
+  color: #302927 !important;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif !important;
+
+  font-size: 20px !important;
+  line-height: 1.85 !important;
+
+  margin: 0 0 27px !important;
+}
+
+.trajetoria.ativa .credito {
+  margin-top: 50px !important;
+  padding-top: 25px !important;
+
+  border-top: 1px solid #ddd1c8 !important;
+
+  color: #756760 !important;
+
+  font-family:
+    Inter,
+    system-ui,
+    sans-serif !important;
+
+  font-size: 14px !important;
+  line-height: 1.65 !important;
+}
