@@ -1482,41 +1482,39 @@
     const paginaTrajetoria =
       document.getElementById("trajetoria");
 
-    if (
-      perfil &&
-      trajetorias[perfil]
-    ) {
+ if (perfil && trajetorias[perfil]) {
 
-      const dados =
-        trajetorias[perfil];
+  const dados = trajetorias[perfil];
 
-      paginaMural.style.display =
-        "none";
+  /* Esconde absolutamente tudo que pertence
+     à página principal do mural */
+  const elementosDoMural = document.querySelectorAll(
+    ".topo, .linha, .grade, .fontes"
+  );
 
-      paginaTrajetoria.classList.add(
-        "ativa"
-      );
+  elementosDoMural.forEach(function (elemento) {
+    elemento.style.display = "none";
+  });
 
-      document.getElementById(
-        "trajetoria-categoria"
-      ).textContent =
-        dados.categoria;
+  /* Mostra somente a trajetória */
+  paginaTrajetoria.classList.add("ativa");
 
-      document.getElementById(
-        "trajetoria-titulo"
-      ).textContent =
-        dados.titulo;
+  document.getElementById(
+    "trajetoria-categoria"
+  ).textContent = dados.categoria;
 
-      document.getElementById(
-        "trajetoria-texto"
-      ).innerHTML =
-        dados.texto;
+  document.getElementById(
+    "trajetoria-titulo"
+  ).textContent = dados.titulo;
 
-      document.title =
-        dados.titulo +
-        " — Além do Padrão";
+  document.getElementById(
+    "trajetoria-texto"
+  ).innerHTML = dados.texto;
 
-    }
+  document.title =
+    dados.titulo + " — Além do Padrão";
+
+}
 
   </script>
 
