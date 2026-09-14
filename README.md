@@ -112,7 +112,3 @@ A exposição está vinculada às ações do projeto de extensão desenvolvido n
 **Ivan Luis dos Santos**
 
 **IFSP - Campus São Paulo**
-
----
-
-© 2026 — Além do Padrão
