@@ -108,7 +108,7 @@ A exposição está vinculada às ações do projeto de extensão desenvolvido n
 
 ## 👥 Autoria
 
-**Isabella Marques Bartu**  
-**Ivan Luis dos Santos**
+**Discente Bolsista: Isabella Marques Bartu**  
+**Coordenador do Projeto: Ivan Luis dos Santos**
 
 **IFSP - Campus São Paulo**
