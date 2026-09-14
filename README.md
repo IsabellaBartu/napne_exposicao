@@ -4,7 +4,7 @@ Site oficial da exposição **“Além do Padrão: Desafiando a Hegemonia nas Pr
 
 ## 🌐 Site
 
-**[Acessar a exposição — Além do Padrão](https://isabellabartu.github.io/napne_exposicao/)**
+**[Acessar a exposição - Além do Padrão](https://isabellabartu.github.io/napne_exposicao/)**
 
 ## Sobre a exposição
 
@@ -111,7 +111,7 @@ A exposição está vinculada às ações do projeto de extensão desenvolvido n
 **Isabella Marques Bartu**  
 **Ivan Luis dos Santos**
 
-**IFSP — Campus São Paulo**
+**IFSP - Campus São Paulo**
 
 ---
 
